@@ -108,19 +108,16 @@ input {
 ===================================================== */
 
 .logo {
-
     display: flex;
-
     align-items: center;
-
     flex-shrink: 0;
-
+    margin-left: 50px;
 }
 
 
 .logo img {
 
-    width: 145px;
+    width: 150px;
 
     height: auto;
 
@@ -191,7 +188,7 @@ input {
 
     border-radius: 7px;
 
-    background: var(--navy-500);
+    background: var(--navy-700);
 
     color: #FFFFFF;
 
@@ -201,7 +198,9 @@ input {
 
     font-size: 14px;
 
-    font-weight: 600;
+    font-weight: 500;
+
+    margin-right: 50px;
 
     transition:
         background 0.2s ease,
@@ -212,7 +211,7 @@ input {
 
 .contact-btn:hover {
 
-    background: var(--navy-700);
+    background: var(--navy-500);
 
     transform: translateY(-1px);
 

@@ -86,7 +86,7 @@ a {
 
     width: min(1240px, calc(100% - 64px));
 
-    height: 58px;
+    height: 82px;
 
     margin: 0 auto;
 
@@ -168,8 +168,8 @@ a {
 
     margin-left: auto;
 
-    min-width: 120px;
-    height: 40px;
+    min-width: 125px;
+    height: 44px;
 
     padding: 0 22px;
 
@@ -177,7 +177,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    background: var(--navy-500);
+    background: var(--navy-700);
 
     color: var(--white);
 
@@ -194,7 +194,7 @@ a {
 
 .contact-btn:hover {
 
-    background: var(--navy-700);
+    background: var(--navy-500);
 
     transform: translateY(-1px);
 }

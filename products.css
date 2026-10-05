@@ -78,7 +78,7 @@ a {
 }
 
 .logo img {
-    width: 175px;
+    width: 150px;
     height: auto;
     display: block;
 }
@@ -129,19 +129,19 @@ a {
 
     padding: 0 22px;
 
-    background: var(--navy-500);
+    background: var(--navy-700);
     color: #ffffff;
 
     border-radius: 7px;
 
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
 
     transition: background 0.25s ease;
 }
 
 .contact-btn:hover {
-    background: var(--gold-400);
+    background: var(--navy-500);
 }
 
 
@@ -1866,11 +1866,10 @@ a {
 .main-nav .nav-link.active::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: -14px;
-    width: 32px;
+    left: 0;
+    right: 0;
+    bottom: -8px;
     height: 3px;
-    transform: translateX(-50%);
     background: #C5942F;
     border-radius: 3px;
 }
