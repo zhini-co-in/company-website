@@ -281,8 +281,6 @@
 
             </div>
 
-
-                        <!-- EMAIL -->
             <div class="contact-info-item">
 
                 <div class="contact-info-icon email-icon">
@@ -294,13 +292,14 @@
                     <h3>Email Us</h3>
 
                     <p>
-                        contact@zhini.co.in
+                        Write to us anytime
                     </p>
 
                 </div>
 
                 <a
-                    href="mailto:contact@zhini.co.in"
+                    href="#"
+                    id="emailBtn"
                     class="info-action email-action"
                 >
                     Send Email
@@ -310,35 +309,35 @@
 
 
             <!-- PHONE -->
-            <div class="contact-info-item">
+<div class="contact-info-item">
 
-                <div class="contact-info-icon phone-icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
+    <div class="contact-info-icon phone-icon">
+        <i class="fa-solid fa-phone"></i>
+    </div>
 
-                <div class="contact-info-content">
+    <div class="contact-info-content">
 
-                    <h3>Call Us</h3>
+        <h3>Call Us</h3>
 
-                    <p>
-                        +91 93 446 972 97
-                    </p>
+        <p>
+            Speak to our team
+        </p>
 
-                    <small>
-                        Mon - Fri, 9:00 AM - 6:00 PM (IST)
-                    </small>
+        <small>
+            Mon - Fri, 9:00 AM - 6:00 PM (IST)
+        </small>
 
-                </div>
+    </div>
 
-                <a
-                    href="tel:+919344697297"
-                    class="info-action phone-action"
-                >
-                    Call Now
-                </a>
+    <a
+        href="#"
+        id="callBtn"
+        class="info-action phone-action"
+    >
+        Call Now
+    </a>
 
-            </div>
-
+</div>
 
             <!-- BUSINESS HOURS -->
             <div class="contact-info-item">
@@ -382,7 +381,7 @@
 
 
             <form class="contact-form" id="contactForm">
-
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                 <!-- ROW 1 -->
                 <div class="form-row">
 
@@ -522,8 +521,8 @@
                     <span>➤</span>
                     Send Message
                     <strong>→</strong>
-                </button>
-
+                    </button>
+                <p class="form-status" id="formStatus" aria-live="polite"></p>
             </form>
 
         </div>
@@ -690,75 +689,132 @@
                 <a href="about.html">
                     About Us
                 </a>
-
                 <a href="services.html">
                     Services
                 </a>
-
                 <a href="products.html">
                     Products
                 </a>
-
                 <a href="contact.html">
                     Contact
                 </a>
-
             </div>
-
-
             <!-- NEWSLETTER -->
             <div class="footer-column footer-newsletter">
-
                 <h3>
                     Our Newsletter
                 </h3>
-
                 <p>
                     Get practical AI insights, automation ideas,
                     and updates from Atom8.
                 </p>
-
-
                 <div class="newsletter-form">
-
                     <input
                         type="email"
                         placeholder="Your email address"
                     >
-
                     <button type="button">
                         Join
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
     </footer>
-
 
     <!-- ================================
          MOBILE MENU SCRIPT
     ================================= -->
-
     <script>
-
         const menuBtn = document.getElementById("menuBtn");
         const mobileNav = document.getElementById("mobileNav");
-
         menuBtn.addEventListener("click", () => {
-
             mobileNav.classList.toggle("show");
             mobileNav.classList.toggle("open");
-
             menuBtn.classList.toggle("active");
-
         });
-
     </script>
 
-</body>
+        <script>
+        const contactForm = document.getElementById("contactForm");
+        const formStatus  = document.getElementById("formStatus");
+        const messageBox  = document.getElementById("message");
+        const counter     = document.querySelector(".message-counter");
+        const sendBtn     = contactForm.querySelector(".send-message-btn");
 
+        // character counter
+        messageBox.addEventListener("input", () => {
+            counter.textContent = messageBox.value.length + "/500";
+        });
+
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // bots fill the hidden field, so stop them
+            if (contactForm.elements["_honey"].value) return;
+
+            sendBtn.disabled = true;
+            formStatus.className = "form-status";
+            formStatus.textContent = "";
+
+            const serviceSelect = contactForm.elements["service"];
+
+            const data = {
+                name: contactForm.elements["fullName"].value,
+                email: contactForm.elements["workEmail"].value,
+                company: contactForm.elements["company"].value,
+                service: serviceSelect.options[serviceSelect.selectedIndex].text.trim(),
+                message: contactForm.elements["message"].value,
+                _subject: "New enquiry from Atom8 website",
+                _template: "table",
+                _captcha: "false"
+            };
+
+            try {
+                const res = await fetch("https://formsubmit.co/ajax/contact@zhini.co.in", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (res.ok && String(result.success) === "true") {
+                    formStatus.textContent = "Thank you! Your message has been sent. We will get back to you shortly.";
+                    formStatus.className = "form-status success";
+                    contactForm.reset();
+                    counter.textContent = "0/500";
+                } else {
+                    throw new Error("Send failed");
+                }
+            } catch (err) {
+                formStatus.textContent = "Sorry, something went wrong. Please try again.";
+                formStatus.className = "form-status error";
+            } finally {
+                sendBtn.disabled = false;
+            }
+        });
+    </script>
+
+    <script>
+    document.getElementById("emailBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+        const user = "contact";
+        const domain = "zhini.co.in";
+        window.location.href = "mailto:" + user + "@" + domain;
+    });
+</script>
+
+<script>
+    document.getElementById("callBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+        const cc = "+91";
+        const part1 = "93446";
+        const part2 = "97297";
+        window.location.href = "tel:" + cc + part1 + part2;
+    });
+</script>
+
+</body>
 </html>

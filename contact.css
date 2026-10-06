@@ -1961,3 +1961,28 @@ main {
     font-size: 20px !important;
     line-height: 1 !important;
 }
+/* ================================
+   FORM STATUS MESSAGE
+================================= */
+
+.form-status {
+    display: none;
+    margin-top: 14px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.form-status.success {
+    display: block;
+    color: #15803d;
+}
+
+.form-status.error {
+    display: block;
+    color: #b91c1c;
+}
+
+.send-message-btn:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}

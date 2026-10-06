@@ -2170,3 +2170,24 @@ a {
     }
 
 }
+
+/* ================================
+   OUR PRODUCTS (home page)
+================================= */
+
+#products .service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#products .service-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#products .products-cta {
+    text-align: center;
+    margin-top: 40px;
+}
